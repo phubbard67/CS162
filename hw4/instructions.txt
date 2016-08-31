@@ -1,0 +1,87 @@
+TITLE: CS 162 Homework hw4
+==========================
+
+
+INTRODUCTION
+============
+     
+     Your first object!  The goal of this assignment is to create an object.
+     The object will be a "Word" object based on the struct from hw3.  You
+     won't do anything with this object yet - the goal is merely to properly
+     create the object.
+
+INSTRUCTIONS
+============
+     1. Create a project directory named "hw4".
+          - This directory will contain all of your project files
+
+     2. Copy the file
+          "/home/student/doug.jones/public/handouts/162/hw4 Instructions/base.tar"
+        to your "hw4" directory
+
+     3. Unpack the "base.tar" file into your "hw4" directory using the command
+          tar -xf "base.tar"
+
+        MAKE SURE your current working directory is your "hw4" directory when you
+          issue the tar command
+
+     4. Create a new module in the project named "word".  Create the word.h and word.cpp
+        files, and modify the makefile to include the "word" module.  Remember, you
+        should change only the MODULES variable in the makefile.
+
+     5. The "word" module should define a class named "Word".  Your Word class definition
+        should include the following instance variables:
+               std::string * word;                     // String containing the word
+               int * count;                            // Integer containing the word count
+
+     6. Define the following "Standard 8"  functions (methods) for your Word class:
+          (a) Default constructor
+          (b) Parameterized constructor to initialize word and count
+          (c) Copy constructor
+          (d) Move constructor
+          (e) Destructor
+          (f) Equivalence (==) operator
+          (g) Copy assignment operator
+          (h) Move assignment operator
+
+     7. Define the following public accessors for your Word class:
+          (a) std::string getName();
+          (b) std::string getCount();
+
+     8. Modify the main function in the appl module as follows:
+          (a) Create 4 Word variables
+                 (i) varA("Hello")
+                (ii) varB("World")
+               (iii) varC(varB);
+                (iv) varD
+
+          (b) Test if varA == varB, i.e. test your equivalence operator
+          (c) Assign varD = varA, i.e. test your copy assignment operator
+          (d) Assign varD = move(varA), i.e. test your move assignment operator
+
+     9. Run valgrind and make sure there are no memory leaks.  Fix any memory leaks.
+
+SUBMISSION
+==========
+     1. Create a tar archive of your entire hw4  directory from the parent directory, i.e.
+          a) cd ..   (to get to the parent of your hw4 directory)
+          b) tar -cf hw4.tar hw4  (to create the archive)
+
+     2. Upload your hw4.tar archive to the Desire2Learn dropox for this assignment
+
+
+GRADING
+=======
+      Keep in mind the grading guidelines listed in the course syllabus.  The points
+      listed below supplement, rather than replace, those grading criteria.
+
+      Your tarball should contain the directory "hw4" with the files appl.h, appl.cpp,
+      main.h, main.cpp, word.h, word.cpp, and makefile.
+      -1 point penalty if you mess this up.
+
+      Do not modify any file(s) other than those listed in the instructions.  There
+      is a -1 point penalty for each file that is modified outside of the instructions.
+ 
+      Your program must perform the tasks listed in Instructions above.
+       -1 point penalty for each improperly implemented task.
+
