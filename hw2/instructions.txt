@@ -1,0 +1,71 @@
+TITLE: CS 162 Homework hw2
+==========================
+
+
+INTRODUCTION
+============
+
+     This assignment is a review of selection and repetition control structures
+     from CS 161, but with a bit of a Linux twist.  You are going to write a
+     a small command line utility that accepts input from stdin (cin) and counts
+     the number of
+          1) Total bytes in the input
+          2) Number of upper-case letters
+          3) Number of lower-case letters
+          4) Number of lines (i.e. number of \n characters)
+          5) Number of digit characters (i.e. '0' through '9'
+
+     The program should read from stdin until EOF is encountered.
+
+INSTRUCTIONS
+============
+     1. Create a project directory named "hw2".
+          - This directory will contain all of your project files
+
+     2. Copy the file
+          "/home/student/doug.jones/public/handouts/162/hw2 Instructions/hw2 base.tar"
+        to your "hw2" directory
+
+     3. Unpack the "hw2 base.tar" file into your "hw2" directory using the command
+          tar -xf "hw2 base.tar"
+
+        MAKE SURE your current working directory is your "hw2" directory when you
+          issue the tar command
+
+     4. Modify the appl.cpp file to peform the following:
+          a) Read from cin until EOF is encountered
+          b) Display the total number of byte, upper-case letters, lower-case letters,
+             digits, and lines in the input
+
+        There is no need to implement functions at this point - functions are a little
+        tricky with the program structure I've given you, and we'll talk about them
+        for the Homework 3 assignment.  For this assignment you should put all of your
+        code in the "main" function in the appl.cpp source code file.
+     
+
+SUBMISSION
+==========
+     1. Create a tar archive of your entire hw2  directory from the parent directory, i.e.
+          a) cd ..   (to get to the parent of your hw2 directory)
+          b) tar -cf hw2.tar hw2  (to create the archive)
+
+     2. Upload your hw2.tar archive to the Desire2Learn dropox for this assignment
+
+
+GRADING
+=======
+      Keep in mind the grading guidelines listed in the course syllabus.  The points
+      below supplement, rather than replace, the criteria listed in the syllabus.
+
+      Your tarball should contain the directory "hw2" with the files appl.h, appl.cpp,
+      main.h, main.cpp, and makefile.  I will be looking to make sure you created the
+      tarball in the correct way.  -1 point penalty if you mess this up.
+ 
+      The only file you should modify is appl.cpp - no other source files should be
+      edited.  -1 point penalty if you mess this up.
+ 
+      Your code must compile and execute.  -5.0 point penalty if the code does not
+      compile properly using the make file provided.
+ 
+      Your program must perform the tasks listed in Instruction (4) above.
+       -1 point penalty for each incorrect count.
