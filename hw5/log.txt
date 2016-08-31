@@ -1,0 +1,627 @@
+main.h
+=========
+     1	/*
+     2	CS 162 Program Header.
+     3	     - Most STL libraries are not permitted in CS transfer classes
+     4	*/
+     5	
+     6	// C++ and C system libraries
+     7	#include <iostream>                               // Stream I/O
+     8	#include <iomanip>                                // I/O manipulators
+     9	#include <string>                                 // String class
+    10	#include <cstring>                                // C-Style string routines
+    11	#include <cerrno>                                 // C-Style error reporting
+    12	#include <limits>                                 // C++ 11 Limits Information (int and float limits)
+    13	#include <sstream>                                // String stream support
+    14	#include <fstream>                                // File stream support
+    15	#include <cmath>                                  // Math stuff
+    16	
+    17	// Project libraries
+    18	#include "appl.h"                                 // Appl object
+    19	
+ 
+main.cpp
+=========
+     1	/*
+     2	     C++ 'main' function for all CS 162 submissions.
+     3	     **** DO NOT CHANGE THIS CODE ****
+     4	*/
+     5	#include "main.h"                                 // Other #include's go in main.h
+     6	using namespace std;
+     7	
+     8	int main(int argc, char **argv) {                 // Default to allow command line arguments
+     9	
+    10	
+    11	     // Program ID strings (Required for CS 162 Submissions)
+    12	     string _cs162_id_(__FILE__ + string(" compiled ") + __DATE__ + string(" ") + __TIME__ 
+    13	          + string(" using g++ ") + to_string(__GNUC__) 
+    14	          + string(".") + to_string(__GNUC_MINOR__) + string(".") 
+    15	          + to_string(__GNUC_PATCHLEVEL__));
+    16	
+    17	     // Invoke appl class
+    18	     Appl * application = new Appl();             // Instantiate
+    19	     application->main(argc, argv);               // Wait for the application to finish
+    20	     delete application;                          // delete the appl object 
+    21	 
+    22	     return 0;
+    23	}
+ 
+appl.h
+=========
+     1	/*
+     2	     Class definition file for Appl
+     3	*/
+     4	#pragma once
+     5	// C++ and C system libraries
+     6	#include <iostream>                               // Stream I/O
+     7	#include <iomanip>                                // I/O manipulators
+     8	#include <string>                                 // String class
+     9	#include <cstring>                                // C-Style string routines
+    10	#include <cerrno>                                 // C-Style error reporting
+    11	#include <limits>                                 // C++ 11 Limits Information (int and float limits)
+    12	#include <sstream>                                // String stream support
+    13	#include <fstream>                                // File stream support
+    14	#include <cmath>                                  // Math stuff
+    15	
+    16	#include "media.h"
+    17	#include "broadcast.h"
+    18	#include "tvstation.h"
+    19	#include "internet.h"
+    20	#include "website.h"
+    21	
+    22	// Class Interface
+    23	class Appl
+    24	{
+    25	     public:
+    26	          Appl();                                 // Constructor
+    27	          ~Appl();                                // Destructor
+    28	          int main(int, char **);                 // Main appl routine
+    29	
+    30	     private:
+    31	          std::string * _cs162_id_;               // Object id
+    32	
+    33	};
+    34	
+ 
+appl.cpp
+=========
+     1	#include "appl.h"
+     2	using namespace std;
+     3	
+     4	/*
+     5	     Class definition file for Appl
+     6	*/
+     7	
+     8	// Constructor
+     9	Appl::Appl()
+    10	{
+    11	     // id string is required for all CS 162 submissions.  *** DO NOT CHANGE ***
+    12	     _cs162_id_ = new string(__FILE__ + string(" compiled ") 
+    13	          + __DATE__ + string(" ") + __TIME__
+    14	          + string(" using g++ ") + to_string(__GNUC__)
+    15	          + string(".") + to_string(__GNUC_MINOR__) + string(".")
+    16	          + to_string(__GNUC_PATCHLEVEL__));
+    17	
+    18	}
+    19	
+    20	// Destructor
+    21	Appl::~Appl()
+    22	{
+    23	     delete _cs162_id_;
+    24	}
+    25	
+    26	// Main Routine
+    27	int Appl::main(int argc, char ** argv)
+    28	{
+    29		//Media
+    30		Media varB;
+    31		Media varA(2);
+    32		Media varC(3);
+    33		Media varJ(varC);
+    34		varC = varA;
+    35		varB = move(varA);
+    36		if(varB == varC){cout << "" << endl;}
+    37		Media varAA(varB);
+    38		
+    39		//Broadcast
+    40		Broadcast varE("stuff", Broadcast::tv, 4);
+    41		Broadcast varF("hey", Broadcast::tv, 0);
+    42		Broadcast varD;
+    43		Broadcast varK(varF);
+    44		varE = varF;
+    45		varD = move(varF);
+    46		if(varD == varE){cout << "" << endl;}
+    47	
+    48	
+    49		//Tvstation
+    50		Tvstation varI;
+    51		Tvstation varG("things", "are", "makeing", "it", Broadcast::radio, 5);
+    52		Tvstation varH("stuff", "is", "going", "away", Broadcast::tv, 6);
+    53		Tvstation varL(varH);
+    54		varG = varH;
+    55		varI = move(varH);
+    56		if(varI == varG){cout << "" << endl;}
+    57	
+    58		//Internet
+    59		Internet varM;
+    60		Internet varN("it", Internet::http, 5);
+    61		Internet varO("away", Internet::ftp, 6);
+    62		Internet varP(varO);
+    63		varN = varO;
+    64		varM = move(varO);
+    65		if(varM == varN){cout << "" << endl;}
+    66	
+    67		//Website
+    68		Website varQ;
+    69		Website varR("makeing", "it", Internet::ftp, 346);
+    70		Website varS("going", "away", Internet::http, 889);
+    71		Website varT(varS);
+    72		varR = varS;
+    73		varQ = move(varS);
+    74		if(varQ == varR){cout << "" << endl;}
+    75	
+    76	     return 0;
+    77	}
+    78	
+ 
+media.h
+=========
+     1	#pragma once
+     2	#include <iostream>
+     3	#include <string>
+     4	
+     5	#define do_debugging 0
+     6	
+     7	#define DEBUG(parm) do{\
+     8		if(do_debugging) { std::cout << "[" << __FILE__ << "] " << parm << std::endl; }\
+     9	} while(0);
+    10	
+    11	class Media
+    12	{
+    13		public:
+    14		Media();
+    15		Media(long int);
+    16		Media(const Media&);
+    17		Media(Media&&);
+    18		~Media();
+    19		bool operator==(const Media & other) const;
+    20		Media & operator=(Media & other);
+    21		Media & operator=(Media && other);	
+    22	
+    23		private:
+    24		long int * audience;
+    25	
+    26		public:
+    27		long int getAudience();
+    28		void setAudience(long int);
+    29	
+    30	
+    31	};
+ 
+media.cpp
+=========
+     1	#include "media.h"
+     2	using namespace std;
+     3	
+     4	Media::Media(){
+     5		DEBUG("Default Constructor");
+     6		audience = new long int;
+     7	}
+     8	
+     9	Media::Media(long int parm){
+    10		DEBUG("Paramterized Constructor");
+    11		audience = new long int;
+    12		*audience = parm;
+    13	}
+    14	
+    15	Media::Media(const Media & parm){
+    16		DEBUG("Copy Constructor");
+    17		audience = new long int;
+    18		*audience = *parm.audience;
+    19	}
+    20	
+    21	Media::Media(Media && parm){
+    22		DEBUG("Move Constructor");
+    23		audience = parm.audience;
+    24		parm.audience = nullptr;	
+    25	}
+    26	
+    27	Media::~Media(){
+    28		DEBUG("Destructor");
+    29		delete audience;
+    30	}
+    31	
+    32	bool Media::operator==(const Media & other)const {
+    33		DEBUG("Equals Operator");
+    34		return (*audience == *other.audience);
+    35	}
+    36	
+    37	Media & Media::operator=(Media & other){
+    38		DEBUG("Copy Assignment");
+    39		Media tmp(other);
+    40		*this = move(tmp);
+    41		return *this;
+    42	}
+    43	
+    44	Media & Media::operator=(Media && other){
+    45		DEBUG("Move Assignment");
+    46		if (this != &other){
+    47			delete audience;
+    48			audience = other.audience;
+    49			other.audience = nullptr;
+    50		}
+    51		return *this;
+    52	}
+ 
+broadcast.h
+=========
+     1	#pragma once
+     2	#include "media.h"
+     3	
+     4	class Broadcast : public Media
+     5	{
+     6		public:
+     7		enum stType {tv, radio};
+     8		Broadcast();
+     9		Broadcast(std::string, stType, long int);
+    10		Broadcast(const Broadcast&);
+    11		Broadcast(Broadcast&&);
+    12		~Broadcast();
+    13		bool operator==(const Broadcast & other) const;
+    14		Broadcast & operator=(Broadcast & other);
+    15		Broadcast & operator=(Broadcast && other);	
+    16	
+    17		private:
+    18		std::string * callSign;
+    19		stType * stationType;
+    20	
+    21		public:
+    22		void setStationType(stType);
+    23		stType getStationType();
+    24		void setCallSign(std::string);
+    25		std::string getCallSign();
+    26	
+    27	};
+ 
+broadcast.cpp
+=========
+     1	#include "broadcast.h"
+     2	using namespace std;
+     3	Broadcast::Broadcast(){
+     4		DEBUG("Default Constructor");
+     5		callSign = nullptr;
+     6		stationType = nullptr;
+     7	}
+     8	
+     9	Broadcast::Broadcast(string parm, stType parm2, long int parm3) : Media(parm3){
+    10		DEBUG("Parm Constructor");
+    11		callSign = new string(parm);
+    12		stationType = new stType;
+    13		*stationType = parm2;
+    14		
+    15	}
+    16	
+    17	Broadcast::Broadcast(const Broadcast & parm){
+    18		DEBUG("Copy Constructor");
+    19		callSign = new string(*parm.callSign);
+    20		stationType = new stType;
+    21		*stationType = *parm.stationType;
+    22	}
+    23	
+    24	Broadcast::Broadcast (Broadcast && parm){
+    25		DEBUG("Move Constructor");
+    26		callSign = parm.callSign;
+    27		stationType = parm.stationType;
+    28		parm.stationType = nullptr;
+    29		parm.callSign = nullptr;
+    30	}
+    31	
+    32	Broadcast::~Broadcast(){
+    33		DEBUG("Destructor");
+    34		delete callSign;
+    35		delete stationType;
+    36	}
+    37	
+    38	bool Broadcast::operator==(const Broadcast & other)const {
+    39		DEBUG("Equals Operator");
+    40		return (*stationType == *other.stationType) && (*callSign == *other.callSign);
+    41	}
+    42	
+    43	Broadcast & Broadcast::operator= (Broadcast & other){
+    44		DEBUG("Copy Assignment");
+    45		Broadcast tmp(other);
+    46		*this = move(tmp);
+    47		return *this;
+    48	}
+    49	
+    50	Broadcast & Broadcast::operator= (Broadcast && other){
+    51		DEBUG("Move Assignment");
+    52		if (this != &other){
+    53			delete callSign;
+    54			callSign = other.callSign;
+    55			other.callSign = nullptr;
+    56			delete stationType;
+    57			stationType = other.stationType;
+    58			other.stationType = nullptr;
+    59		}
+    60		return *this;
+    61	}
+    62	
+ 
+tvstation.h
+=========
+     1	#pragma once
+     2	#include "broadcast.h"
+     3	
+     4	class Tvstation : public Broadcast 
+     5	{
+     6		public:
+     7		Tvstation();
+     8		Tvstation(std::string, std::string, std::string, std::string, stType, long int);
+     9		Tvstation(const Tvstation&);
+    10		Tvstation(Tvstation&&);
+    11		~Tvstation();
+    12		bool operator==(const Tvstation & other) const;
+    13		Tvstation & operator=(Tvstation & other);
+    14		Tvstation & operator=(Tvstation && other);	
+    15	
+    16		private:
+    17		std::string * owner;
+    18		std::string * city;
+    19		std::string * state;
+    20	
+    21		public:
+    22		void setOwner(std::string);
+    23		void setCity(std::string);
+    24		void setState(std::string);
+    25	};
+ 
+tvstation.cpp
+=========
+     1	#include "tvstation.h"
+     2	using namespace std;
+     3	
+     4	Tvstation::Tvstation(){
+     5		DEBUG("Default Constructor");
+     6		owner = new string("");
+     7		city =  new string("");
+     8		state = new string("");
+     9	}
+    10	
+    11	Tvstation::Tvstation(string parm, string parm2, string parm3, string parm4, stType parm5, long int parm6) : Broadcast(parm4, parm5, parm6){
+    12		DEBUG("Parm Constructor");
+    13		owner = new string(parm);
+    14		city = new string(parm2);
+    15		state = new string(parm3);
+    16	}
+    17	
+    18	Tvstation::Tvstation(const Tvstation& parm){
+    19		DEBUG("Copy Constructor");
+    20		owner = new string(*(parm.owner));
+    21		city = new string(*(parm.city));
+    22		state = new string(*(parm.state));
+    23	}
+    24	
+    25	Tvstation::Tvstation (Tvstation && parm){
+    26		DEBUG("Move Constructor");
+    27		owner = parm.owner;
+    28		parm.owner = nullptr;
+    29		city = parm.city;
+    30		parm.city = nullptr;	
+    31		state = parm.state;
+    32		parm.state = nullptr;
+    33	}
+    34	
+    35	Tvstation::~Tvstation(){
+    36		DEBUG("Destructor");
+    37		delete owner;
+    38		delete city;
+    39		delete state;
+    40	}
+    41	
+    42	bool Tvstation::operator==(const Tvstation & other)const {
+    43		DEBUG("Equals Operator");
+    44		return (*city == *other.city) && (*owner == *other.owner) && (*state == *other.state);
+    45	}
+    46	
+    47	Tvstation & Tvstation::operator= (Tvstation & other){
+    48		DEBUG("Copy Assignment");
+    49		Tvstation tmp(other);
+    50		*this = move(tmp);
+    51		return *this;
+    52	}
+    53	
+    54	Tvstation & Tvstation::operator= (Tvstation && other){
+    55		DEBUG("Move Assignment");
+    56		if (this != &other){
+    57			delete owner;
+    58			owner = other.owner;
+    59			other.owner = nullptr;
+    60			delete city;
+    61			city = other.city;
+    62			other.city = nullptr;
+    63			delete state;
+    64			state = other.state;
+    65			other.state = nullptr;
+    66		}
+    67		return * this;
+    68	}
+    69	
+ 
+internet.h
+=========
+     1	#pragma once
+     2	#include "media.h"
+     3	
+     4	class Internet : public Media
+     5	{
+     6		public:
+     7		enum reType {http, ftp};
+     8		Internet();
+     9		Internet(std::string, reType, long int);
+    10		Internet(const Internet&);
+    11		Internet(Internet&&);
+    12		~Internet();
+    13		bool operator==(const Internet & other) const;
+    14		Internet & operator=(Internet & other);
+    15		Internet & operator=(Internet && other);	
+    16	
+    17		private:
+    18		std::string * url;
+    19		reType * resourceType;
+    20	
+    21		public:
+    22		void setResourceType(reType);
+    23		reType getResourceType();
+    24		void setURL(std::string);
+    25		std::string getURL();
+    26	
+    27	};
+ 
+internet.cpp
+=========
+     1	#include "internet.h"
+     2	using namespace std;
+     3	Internet::Internet(){
+     4		DEBUG("Default Constructor");
+     5		url = nullptr;
+     6		resourceType = nullptr;
+     7	}
+     8	
+     9	Internet::Internet(string parm, reType parm2, long int parm3) : Media(parm3){
+    10		DEBUG("Parm Constructor");
+    11		url = new string(parm);
+    12		resourceType = new reType;
+    13		*resourceType = parm2;
+    14		
+    15	}
+    16	
+    17	Internet::Internet(const Internet & parm){
+    18		DEBUG("Copy Constructor");
+    19		url = new string(*parm.url);
+    20		resourceType = new reType;
+    21		*resourceType = *parm.resourceType;
+    22	}
+    23	
+    24	Internet::Internet (Internet && parm){
+    25		DEBUG("Move Constructor");
+    26		url = parm.url;
+    27		resourceType = parm.resourceType;
+    28		parm.resourceType = nullptr;
+    29		parm.url = nullptr;
+    30	}
+    31	
+    32	Internet::~Internet(){
+    33		DEBUG("Destructor");
+    34		delete url;
+    35		delete resourceType;
+    36	}
+    37	
+    38	bool Internet::operator==(const Internet & other)const {
+    39		DEBUG("Equals Operator");
+    40		return (*resourceType == *other.resourceType) && (*url == *other.url);
+    41	}
+    42	
+    43	Internet & Internet::operator= (Internet & other){
+    44		DEBUG("Copy Assignment");
+    45		Internet tmp(other);
+    46		*this = move(tmp);
+    47		return *this;
+    48	}
+    49	
+    50	Internet & Internet::operator= (Internet && other){
+    51		DEBUG("Move Assignment");
+    52		if (this != &other){
+    53			delete url;
+    54			url = other.url;
+    55			other.url = nullptr;
+    56			delete resourceType;
+    57			resourceType = other.resourceType;
+    58			other.resourceType = nullptr;
+    59		}
+    60		return *this;
+    61	}
+    62	
+ 
+website.h
+=========
+     1	#pragma once
+     2	#include "internet.h"
+     3	
+     4	class Website : public Internet 
+     5	{
+     6		public:
+     7		Website();
+     8		Website(std::string, std::string, reType,  long int);
+     9		Website(const Website&);
+    10		Website(Website&&);
+    11		~Website();
+    12		bool operator==(const Website & other) const;
+    13		Website & operator=(Website & other);
+    14		Website & operator=(Website && other);	
+    15	
+    16		private:
+    17		std::string * category;
+    18	
+    19		public:
+    20		void setCategory(std::string);
+    21		std::string getCategory();
+    22	};
+ 
+website.cpp
+=========
+     1	#include "website.h"
+     2	using namespace std;
+     3	
+     4	Website::Website(){
+     5		DEBUG("Default Constructor");
+     6		category = nullptr;
+     7	}
+     8	
+     9	Website::Website(string parm, string parm4, reType parm5, long int parm6) : Internet(parm4, parm5, parm6){
+    10		DEBUG("Parm Constructor");
+    11		category = new string(parm);
+    12	}
+    13	
+    14	Website::Website(const Website& parm){
+    15		DEBUG("Copy Constructor");
+    16		category = new string(*(parm.category));
+    17	}
+    18	
+    19	Website::Website (Website && parm){
+    20		DEBUG("Move Constructor");
+    21		category = parm.category;
+    22		parm.category = nullptr;
+    23	}
+    24	
+    25	Website::~Website(){
+    26		DEBUG("Destructor");
+    27		delete category;
+    28	}
+    29	
+    30	bool Website::operator==(const Website & other)const {
+    31		DEBUG("Equals Operator");
+    32		return (*category == *other.category); 
+    33	}
+    34	
+    35	Website & Website::operator= (Website & other){
+    36		DEBUG("Copy Assignment");
+    37		Website tmp(other);
+    38		*this = move(tmp);
+    39		return *this;
+    40	}
+    41	
+    42	Website & Website::operator= (Website && other){
+    43		DEBUG("Move Assignment");
+    44		if (this != &other){
+    45			delete category;
+    46			category = other.category;
+    47			other.category = nullptr;
+    48		}
+    49		return * this;
+    50	}
+    51	
+ 
+ 
+Compiler Output: 
+ 

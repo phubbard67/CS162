@@ -1,0 +1,81 @@
+TITLE: CS 162 Homework hw5
+==========================
+
+
+INTRODUCTION
+============
+     The goal of this assignment is to work with inheritance, and understand
+     how to properly construct and destruct derived objects.
+
+     The "hw5 uml.pdf" file on the Desire2Learn server contains the class
+     diagram for this assignment (see your instructor if you can not find
+     this file).  You will create a 3-level hierarchy, with one parent
+     class and 4 derived classes.     
+     
+     You will also create a class driver to test your implementation.
+ 
+
+INSTRUCTIONS
+============
+     1. Create a project directory named "hw5".
+          - This directory will contain all of your project files
+
+     2. Copy the file
+          "/home/student/doug.jones/public/handouts/162/hw5 instructions/base.tar"
+        to your "hw5" directory
+
+     3. Unpack the "base.tar" file into your "hw5" directory using the command
+          tar -xf "base.tar"
+
+        MAKE SURE your current working directory is your "hw5" directory when you
+          issue the tar command
+
+     4. Create the following modules in your project:
+          - "media" module for your "Media" class
+          - "broadcast" module for your "Broadcast" class
+          - "internet" module for your "Internet" class
+          - "tvstation" module for your "TVstation" class
+          - "website" module for your "Website" class
+
+     6. Define the following "Standard 8"  functions (methods) for all of your new modules:
+          (a) Default constructor
+          (b) Parameterized constructor to initialize word and count
+          (c) Copy constructor
+          (d) Move constructor
+          (e) Destructor
+          (f) Equivalence (==) operator
+          (g) Copy assignment operator
+          (h) Move assignment operator
+
+     7. You may define dummy methods (no function) for the accessors and mutators shown in the class
+        diagram.  These methods will be addressed in hw6
+
+     8. Modify the main function in the appl module so that it is a test driver for each of the classes.
+        This means you want invoke each of the "Big 8" methods for each class.
+     
+     9. Run valgrind and make sure there are no memory leaks.  Fix any memory leaks.
+
+SUBMISSION
+==========
+     1. Create a tar archive of your entire hw5  directory from the parent directory, i.e.
+          a) cd ..   (to get to the parent of your hw5 directory)
+          b) tar -cf hw5.tar hw5  (to create the archive)
+
+     2. Upload your hw5.tar archive to the Desire2Learn dropox for this assignment
+
+
+GRADING
+=======
+      Keep in mind the grading guidelines listed in the course syllabus.  The points
+      listed below supplement, rather than replace, those grading criteria.
+
+      Your tarball should contain the directory "hw5" with all project files contained in the diretory.
+      -1 point penalty if you mess this up.
+
+      Do not modify any file(s) other than those listed in the instructions.  There
+      is a -1 point penalty for each file that is modified outside of the instructions.
+ 
+      There are 5 modules you must create, with 8 required methods for each module (i.e. the
+      "Standard 8" methods). There is a -0.1 point penalty for each incorrect module method.
+
+
